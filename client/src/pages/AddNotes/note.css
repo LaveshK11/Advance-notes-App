@@ -7,11 +7,16 @@
   font-family: 'Poppins', sans-serif;
 }
 body{
-  background: #88ABFF;
+  background: #598bfe;
 }
 ::selection{
   color: #fff;
   background: #618cf8;
+}
+
+.btns{
+  display: inline;
+  margin: auto;
 }
 .wrapper{
   margin: 50px;

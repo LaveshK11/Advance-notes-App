@@ -29,9 +29,10 @@ export default function () {
       <div className="writebox" style={{ display: show ? "block" : "none" }}>
         <WriteBox/>
       </div>
-      <button  className = "backBtn" style={{ display: show ? "block" : "none" , textAlign : "center" }} onClick={(e) => setShow(false)}> Back </button>
+      <div className="btns">   <button  className = "backBtn" style={{ display: show ? "block" : "none" , textAlign : "center" }} onClick={(e) => setShow(false)}> Back </button>
       <button  type="submit" className = "submit" style={{ display: show ? "block" : "none" , textAlign : "center" }} 
       onClick={e => submitNotes(e)} > Submit </button>
+      </div>
     </>
   );
 }
