@@ -15,8 +15,8 @@ body{
 }
 
 .btns{
-  display: inline;
-  margin: auto;
+display: flex;
+/* align-items: center; */
 }
 .wrapper{
   margin: 50px;
