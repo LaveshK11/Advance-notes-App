@@ -1,7 +1,7 @@
 // const { sequelize, DataTypes } = require("../dbConnection");
 const { DataTypes } = require("sequelize");
 const sequelize = require("../dbConnection");
-const AttendenceType = sequelize.define("User", {
+const user = sequelize.define("User", {
   id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
@@ -13,5 +13,6 @@ const AttendenceType = sequelize.define("User", {
     type: DataTypes.STRING,
   },
 });
-AttendenceType.sync({ alter: true, force: true });
-module.exports = AttendenceType;
+
+user.sync({ alter: true });
+module.exports = user;

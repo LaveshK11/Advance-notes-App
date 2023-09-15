@@ -1,8 +1,10 @@
-const express = require('express')
-const router = express.Router()
+const express = require("express");
+const { addNotes } = require("../../../controller/addNotes");
+const router = express.Router();
 
-router.get('/upload' , (req , res) =>{
-    res.send("upload")
-})
+router.get("/", (req, res) => {
+  res.send("upload");
+});
 
-module.exports = router
+router.post("/addNotes" , addNotes);
+module.exports = router;
