@@ -1,20 +1,33 @@
 const Notes = require("../database/models/Notes");
-const { APIError, ValidationError } = require("../utils/errorHandler");
+const { ValidationError } = require("../utils/definedError");
+const handelError = require("../utils/handelError");
 
-const storeNotes = async (payload) => {
+exports.storeNotes = async (payload) => {
+  let transaction;
+
   try {
-    console.log(payload);
-    const data = new Notes(payload);
+    const { user_id, Content } = payload;
+    if (
+      user_id != "" &&
+      user_id !== undefined &&
+      Content != "" &&
+      Content !== undefined
+    ) {
+      
+      const data = new Notes(payload);
 
-    const response = await data.save();
+      const response = await data.save();
 
-    return response;
-  } catch (error) {
-    if (error.name == "SequelizeForeignKeyConstraintError") {
-      throw new ValidationError("Data Not found", error);
+      return response;
+
+    } else {
+
+      throw new ValidationError("Iccorect Data entered");
+
     }
-    throw new APIError("Data Not found", error);
+  } catch (error) {
+    return handelError(error);
   }
 };
 
-module.exports = { storeNotes };
+

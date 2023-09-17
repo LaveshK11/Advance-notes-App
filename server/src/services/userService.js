@@ -1,5 +1,5 @@
 const User = require("../database/models/User");
-const { APIError } = require("../utils/errorHandler");
+const { APIError } = require("../utils/definedError");
 
 const userRegister = async (payload) => {
   try {

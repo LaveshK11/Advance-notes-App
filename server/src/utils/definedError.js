@@ -22,7 +22,7 @@ const STATUS_CODES = {
       this.isOperational = isOperational;
       this.errorStack = errorStack;
       this.logError = logingErrorResponse;
-      Error.captureStackTrace(this);
+      // Error.captureStackTrace(this);
     }
   }
   
@@ -38,7 +38,6 @@ const STATUS_CODES = {
     }
   }
   
-  //400
   class BadRequestError extends AppError {
     constructor(description = "Bad request", logingErrorResponse) {
       super(
@@ -52,7 +51,6 @@ const STATUS_CODES = {
     }
   }
   
-  //400
   class ValidationError extends AppError {
     constructor(description = "Validation Error", errorStack) {
       super(

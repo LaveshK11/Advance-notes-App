@@ -9,6 +9,7 @@ const Notes = sequelize.define("notes", {
     allowNull: false,
     primaryKey: true,
   },
+
   release_date: {
     type: DataTypes.DATEONLY,
     defaultValue: DataTypes.NOW,

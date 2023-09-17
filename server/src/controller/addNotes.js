@@ -1,9 +1,8 @@
-const Notes = require("../database/models/Notes");
-const { storeNotes } = require("../services/notesUpload");
+const { storeNotes , getNotesById } = require("../services/notesUpload");
 
 /**
- * @param {} req
- * @param {} res
+ * @param {user_id , content} req
+ * @param {Json} res
  * @param {*} next
  * @returns Json Data.
  */
@@ -13,7 +12,10 @@ exports.addNotes = async (req, res, next) => {
     let data = await storeNotes(req.body);
 
     return res.json(data);
+    
   } catch (error) {
     next(error);
   }
 };
+
+
