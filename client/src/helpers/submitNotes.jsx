@@ -1,21 +1,23 @@
 import AxiosInstance from '../config/axiosIntance';
 
-const subitNotes = async (payload) => {
-  return new Promise((resolve, reject) => {
-
-    let data = {
+const submitNotes = async (payload, user_id) => {
+  try {
+    const data = {
       "Content": payload,
-      "user_id": 13
-    }
-    AxiosInstance.post('/upload/addNotes', data)
-      .then((response) => {
-        console.log(JSON.stringify(response.data));
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  });
+      "user_id": user_id || 12
+    };
 
+    const response = await AxiosInstance.post('/upload/addNotes', data);
+
+    if (response.data.statusCode === 400) {
+      return false;
+    } else {
+      return response.data;
+    }
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
 };
 
-export { subitNotes };
+export { submitNotes };

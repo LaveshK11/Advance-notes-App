@@ -1,26 +1,43 @@
 import React, { useState } from "react";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import "./note.css";
 import Header from "../../common/header/Header";
 import WriteBox from "../../components/WriteBox";
 import { useSelector } from 'react-redux';
-import { subitNotes } from "../../helpers/submitNotes";
-
+import { submitNotes } from "../../helpers/submitNotes";
+import { useDispatch } from 'react-redux';
+import { setInputBoxEmpty } from "../../redux/slice/noteSlice";
 
 export default function (STATE) {
   const [show, setShow] = useState(false);
 
-  const data = useSelector((state) => {
-    return state.notes
-  })
+  const dispatch = useDispatch();
+
+  const data = useSelector((state) => state.notes.editorHtml)
 
   const shoWriteBox = async (e) => {
     e.preventDefault();
     setShow(true);
   };
 
-  const submitNotes = async (e) => {
+  const submit = async (e) => {
     e.preventDefault();
-    subitNotes(data)
+
+    let dataSaved = await submitNotes(data)
+
+    if (dataSaved) {
+      toast.success('Notes Saved Successfully!', {
+        position: toast.POSITION.TOP_RIGHT
+      });
+      dispatch(setInputBoxEmpty(""));
+    }
+    else {
+      toast.error("Error While Saving Notes!", {
+        position: toast.POSITION.TOP_RIGHT
+      });
+      dispatch(setInputBoxEmpty(""));
+    }
   }
 
   return (
@@ -40,8 +57,9 @@ export default function (STATE) {
       <div className="btns">
         <button className="backBtn" style={{ display: show ? "block" : "none", textAlign: "center" }} onClick={(e) => setShow(false)}> Back </button>
         <button type="submit" className="backBtn" style={{ display: show ? "block" : "none", textAlign: "center" }}
-          onClick={e => submitNotes(e)} > Submit </button>
+          onClick={e => submit(e)} > Submit </button>
       </div>
+      <ToastContainer />
     </>
   );
 }

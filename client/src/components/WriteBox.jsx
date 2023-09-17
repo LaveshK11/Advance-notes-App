@@ -1,17 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css'; // Import Quill's styles
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { writeNotes } from '../redux/slice/noteSlice';
 
 
 function WriteBox() {
-  const [editorHtml, setEditorHtml] = useState('');
-
+  const editorHtml = useSelector((state) => state.notes.editorHtml); // Get editorHtml from Redux store
   const dispatch = useDispatch();
 
   const handleChange = (html) => {
-    setEditorHtml(html);
     dispatch(writeNotes(html));
   };
 

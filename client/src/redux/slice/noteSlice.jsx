@@ -2,10 +2,15 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const addNotesData = createSlice({
     name: "notes",
-    initialState: "",
+    initialState: {
+        editorHtml: '',
+    },
     reducers: {
-        writeNotes(state, action) {
-            return state + action.payload;
+        writeNotes: (state, action) => {
+            state.editorHtml = action.payload;
+        },
+        setInputBoxEmpty: (state, action) => {
+            state.editorHtml = ''; 
         },
     }
 })
@@ -13,4 +18,4 @@ const addNotesData = createSlice({
 
 export default addNotesData.reducer
 
-export const { writeNotes } = addNotesData.actions 
+export const { writeNotes, setInputBoxEmpty } = addNotesData.actions 
