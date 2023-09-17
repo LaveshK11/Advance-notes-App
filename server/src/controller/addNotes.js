@@ -1,4 +1,4 @@
-const { storeNotes , getNotesById } = require("../services/notesUpload");
+const { storeNotes, getNotesById } = require("../services/notesUpload");
 
 /**
  * @param {user_id , content} req
@@ -10,12 +10,8 @@ const { storeNotes , getNotesById } = require("../services/notesUpload");
 exports.addNotes = async (req, res, next) => {
   try {
     let data = await storeNotes(req.body);
-
     return res.json(data);
-    
   } catch (error) {
     next(error);
   }
 };
-
-
