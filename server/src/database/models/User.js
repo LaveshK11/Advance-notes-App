@@ -12,6 +12,16 @@ const user = sequelize.define("User", {
     allowNull: false,
     type: DataTypes.STRING,
   },
+  email: {
+    allowNull: false,
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  password: {
+    allowNull: false,
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
 });
 
 user.sync({ alter: true });
