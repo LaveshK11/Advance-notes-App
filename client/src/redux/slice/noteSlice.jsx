@@ -10,7 +10,7 @@ const addNotesData = createSlice({
             state.editorHtml = action.payload;
         },
         setInputBoxEmpty: (state, action) => {
-            state.editorHtml = ''; 
+            state.editorHtml = ""; 
         },
     }
 })

@@ -4,7 +4,7 @@ const submitNotes = async (payload, user_id) => {
   try {
     const data = {
       "Content": payload,
-      "user_id": user_id || 12
+      "user_id": user_id || 1
     };
 
     const response = await AxiosInstance.post('/upload/addNotes', data);

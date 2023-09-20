@@ -1,18 +1,26 @@
 import React from 'react';
 import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css'; // Import Quill's styles
+import 'react-quill/dist/quill.snow.css'; // Import Quill'sstyles
 import { useDispatch, useSelector } from 'react-redux';
 import { writeNotes } from '../redux/slice/noteSlice';
 
 
 function WriteBox() {
-  const editorHtml = useSelector((state) => state.notes.editorHtml); // Get editorHtml from Redux store
+  let editorHtml = useSelector((state) => state.notes.editorHtml); 
   const dispatch = useDispatch();
 
-  const handleChange = (html) => {
-    dispatch(writeNotes(html));
-  };
+  if (!editorHtml) {
+    editorHtml = '';
+  }
 
+  const handleChange = (html) => {
+
+    if (html.trim() !== "<p><br></p>") {
+      dispatch(writeNotes(html));
+    }
+
+  };
+  x
   return (
     <div className="rich-text-editor" style={{ color: "black" }}>
       <ReactQuill

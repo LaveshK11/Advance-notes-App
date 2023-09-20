@@ -5,7 +5,6 @@ import { submitNotes } from "../../helpers/submitNotes";
 import { setInputBoxEmpty } from "../../redux/slice/noteSlice";
 import 'react-toastify/dist/ReactToastify.css';
 import "./note.css";
-import Header from "../../common/header/Header";
 import WriteBox from "../../components/WriteBox";
 
 export default function () {
@@ -21,10 +20,13 @@ export default function () {
   };
 
   const submit = async (e) => {
+    
     e.preventDefault();
     
     if(data.length) {
+
       let dataSaved = await submitNotes(data)
+      
       if (dataSaved) {
         toast.success('Notes Saved Successfully!', {
           position: toast.POSITION.TOP_RIGHT
@@ -45,10 +47,17 @@ export default function () {
         dispatch(setInputBoxEmpty(""));
       }
   }
+  useEffect(() => {
+    first
+  
+    return () => {
+      return true
+    }
+  }, [third])
+  
 
   return (
     <>
-      <Header />
       <div className="wrapper" style={{ display: show === false ? "block" : "none" }}>
         <li className="add-box">
           <div className="icon">
