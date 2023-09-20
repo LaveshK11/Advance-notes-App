@@ -1,4 +1,5 @@
 const { storeNotes, getNotesById } = require("../services/notesUpload");
+const logger = require("../utils/logger/errorLogger");
 
 /**
  * @param {user_id , content} req

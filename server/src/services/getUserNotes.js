@@ -1,6 +1,6 @@
 const Notes = require("../database/models/Notes");
-const { ValidationError } = require("../utils/definedError");
-const handleError = require("../utils/handelError");
+const { ValidationError } = require("../utils/handelErrors/definedError");
+const handleError = require("../utils/handelErrors/handelError");
 
 exports.getNotesById = async (payload) => {
   try {
