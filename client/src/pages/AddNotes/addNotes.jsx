@@ -1,15 +1,14 @@
 import React, { useState } from "react";
 import { ToastContainer, toast } from 'react-toastify';
+import { useSelector , useDispatch } from 'react-redux';
+import { submitNotes } from "../../helpers/submitNotes";
+import { setInputBoxEmpty } from "../../redux/slice/noteSlice";
 import 'react-toastify/dist/ReactToastify.css';
 import "./note.css";
 import Header from "../../common/header/Header";
 import WriteBox from "../../components/WriteBox";
-import { useSelector } from 'react-redux';
-import { submitNotes } from "../../helpers/submitNotes";
-import { useDispatch } from 'react-redux';
-import { setInputBoxEmpty } from "../../redux/slice/noteSlice";
 
-export default function (STATE) {
+export default function () {
   const [show, setShow] = useState(false);
 
   const dispatch = useDispatch();
@@ -23,21 +22,28 @@ export default function (STATE) {
 
   const submit = async (e) => {
     e.preventDefault();
-
-    let dataSaved = await submitNotes(data)
-
-    if (dataSaved) {
-      toast.success('Notes Saved Successfully!', {
-        position: toast.POSITION.TOP_RIGHT
-      });
-      dispatch(setInputBoxEmpty(""));
+    
+    if(data.length) {
+      let dataSaved = await submitNotes(data)
+      if (dataSaved) {
+        toast.success('Notes Saved Successfully!', {
+          position: toast.POSITION.TOP_RIGHT
+        });
+        dispatch(setInputBoxEmpty(""));
+      }
+      else {
+        toast.error("Error While Saving Notes!", {
+          position: toast.POSITION.TOP_RIGHT
+        });
+        dispatch(setInputBoxEmpty(""));
+      }
     }
-    else {
-      toast.error("Error While Saving Notes!", {
-        position: toast.POSITION.TOP_RIGHT
-      });
-      dispatch(setInputBoxEmpty(""));
-    }
+    else{ 
+      toast.error("Empty Input Box  ", {
+          position: toast.POSITION.TOP_RIGHT
+        });
+        dispatch(setInputBoxEmpty(""));
+      }
   }
 
   return (

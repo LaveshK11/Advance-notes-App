@@ -8,7 +8,6 @@ const submitNotes = async (payload, user_id) => {
     };
 
     const response = await AxiosInstance.post('/upload/addNotes', data);
-
     if (response.data.statusCode === 400) {
       return false;
     } else {
