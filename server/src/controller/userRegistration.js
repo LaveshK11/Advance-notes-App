@@ -10,10 +10,10 @@ const saveUserData = require("../services/userService").userRegister;
 
 const register = async (req, res, next) => {
   try {
-    
     let data = await saveUserData(req.body);
 
     return res.json(data);
+    
   } catch (error) {
     next(error);
   }

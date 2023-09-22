@@ -1,47 +1,50 @@
-const Joi = require("joi");
 const bcrypt = require("bcrypt");
 const User = require("../database/models/User");
 const logger = require("../utils/logger/errorLogger");
 const { APIError } = require("../utils/handelErrors/definedError");
 const { bodySchema } = require("../utils/validation/schemas/userObj");
+const generateToken = require("../helpers/jwtHelper");
+
+const validateUserPayload = (payload) => {
+  return bodySchema.validate(payload);
+};
+
+const createUser = async (userData) => {
+  const saltRounds = 10;
+  const hashedPass = await bcrypt.hash(userData.password, saltRounds);
+  const userObj = {
+    name: userData.name,
+    email: userData.email,
+    password: hashedPass,
+  };
+  const newUser = await User.create(userObj);
+  return newUser;
+};
 
 const userRegister = async (payload) => {
   try {
-    let approve = bodySchema.validate(payload);
+    const validation = validateUserPayload(payload);
 
-    if (!approve.error) {
-      const user = await User.findOne({
-        where: { email: approve.value.email },
-      });
-
-      if (user) {
-        let data = { newUser: false, message: "already exisits" };
-
-        return data;
-      } else {
-        const saltRounds = 10;
-
-        const hashedPass = await bcrypt.hash(approve.value.password, saltRounds);
-
-        const userObj = {
-          name: approve.value.email,
-          email: approve.value.email,
-          password: hashedPass,
-        };
-
-        const newUser = new User(userObj);
-
-        const response = await newUser.save();
-
-        return response;
-      }
-    } else {
-      return approve.error;
+    if (validation.error) {
+      return validation.error;
     }
+
+    const existingUser = await User.findOne({
+      where: { email: payload.email },
+    });
+
+    if (existingUser) {
+      return { newUser: false, message: "User already exists" };
+    }
+
+    const newUser = await createUser(payload);
+
+    const userToken = await generateToken(newUser.id, newUser.email);
+
+    return { Token: userToken };
   } catch (error) {
     console.log(error);
     logger.error(error);
-
     throw new APIError("Data Not found", error);
   }
 };

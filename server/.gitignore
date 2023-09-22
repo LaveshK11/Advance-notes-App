@@ -2,3 +2,5 @@ node_modules
 /src/config/dbConfig.js
 .env
 **dbConfig
+**error.log
+**combined.log

@@ -11,6 +11,7 @@ const logger = require("../utils/logger/errorLogger");
 exports.addNotes = async (req, res, next) => {
   try {
     let data = await storeNotes(req.body);
+    console
     return res.json(data);
   } catch (error) {
     next(error);

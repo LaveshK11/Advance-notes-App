@@ -4,7 +4,6 @@ const handelError = require("../utils/handelErrors/handelError");
 const logger = require("../utils/logger/errorLogger");
 
 exports.storeNotes = async (payload) => {
-  let transaction;
 
   try {
     const { user_id, Content } = payload;
