@@ -13,7 +13,6 @@ const register = async (req, res, next) => {
     let data = await saveUserData(req.body);
 
     return res.json(data);
-    
   } catch (error) {
     next(error);
   }

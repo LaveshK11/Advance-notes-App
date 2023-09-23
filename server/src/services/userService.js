@@ -43,7 +43,6 @@ const userRegister = async (payload) => {
 
     return { Token: userToken };
   } catch (error) {
-    console.log(error);
     logger.error(error);
     throw new APIError("Data Not found", error);
   }
