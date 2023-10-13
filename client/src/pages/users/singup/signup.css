@@ -1,0 +1,121 @@
+/* Styles for the title */
+.title {
+    color: black;
+    font-size: 27px;
+    font-weight: 600;
+  }
+  
+  /* Styles for input fields */
+  .input-field {
+    position: relative;
+    height: 50px;
+    width: 100%;
+    margin-top: 30px;
+  }
+  
+  .input-field input {
+    height: 100%;
+    width: 100%;
+    padding: 0 35px;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    border-bottom: 2px solid #ccc;
+    border-top: 2px solid transparent;
+    transition: all 0.2s ease;
+  }
+  
+  .input-field input:focus,
+  .input-field input:valid {
+    border-bottom-color: #4070f4;
+  }
+  
+  /* .input-field i {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #999;
+    font-size: 23px;
+    transition: all 0.2s ease;
+  } */
+  
+  /* .input-field input:focus ~ i,
+  .input-field input:valid ~ i {
+    color: #4070f4;
+  }
+  
+  .input-field i.icon {
+    left: 0;
+  } */
+/*   
+  .input-field i.showHidePw {
+    right: 0;
+    cursor: pointer;
+    padding: 10px;
+  } */
+  
+  /* Styles for checkbox and terms label */
+  .checkbox-text {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+  
+  .checkbox-content {
+    display: flex;
+    align-items: center;
+  }
+  
+  .checkbox-content input {
+    margin-right: 10px;
+    accent-color: #4070f4;
+  }
+  
+  /* Text styles */
+  .text {
+    color: #333;
+    font-size: 14px;
+  }
+  
+  /* Link styles */
+  a.text {
+    color: #4070f4;
+    text-decoration: none;
+  }
+  
+  a.text:hover {
+    text-decoration: underline;
+  }
+  
+  /* Button styles */
+  .button {
+    margin-top: 35px;
+  }
+  
+  .button input {
+    border: none;
+    color: #fff;
+    font-size: 17px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    border-radius: 6px;
+    background-color: #4070f4;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .button input:hover {
+    background-color: #265df2;
+  }
+  
+  /* Styles for login-signup text */
+  .login-signup {
+    margin-top: 30px;
+    text-align: center;
+  }
+  
+  .form_signup{
+    background-color: white;
+    padding : 30px;
+  }
