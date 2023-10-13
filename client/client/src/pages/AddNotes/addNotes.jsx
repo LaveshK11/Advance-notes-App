@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { ToastContainer, toast } from 'react-toastify';
-import { useSelector , useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { submitNotes } from "../../helpers/submitNotes";
 import { setInputBoxEmpty } from "../../redux/slice/noteSlice";
 import 'react-toastify/dist/ReactToastify.css';
 import "./note.css";
-import WriteBox from "../../components/WriteBox";
+import WriteBox from "../../components/inputBox/WriteBox";
 
 export default function () {
   const [show, setShow] = useState(false);
@@ -20,13 +20,13 @@ export default function () {
   };
 
   const submit = async (e) => {
-    
+
     e.preventDefault();
-    
-    if(data.length) {
+
+    if (data.length) {
 
       let dataSaved = await submitNotes(data)
-      
+
       if (dataSaved) {
         toast.success('Notes Saved Successfully!', {
           position: toast.POSITION.TOP_RIGHT
@@ -40,21 +40,14 @@ export default function () {
         dispatch(setInputBoxEmpty(""));
       }
     }
-    else{ 
+    else {
       toast.error("Empty Input Box  ", {
-          position: toast.POSITION.TOP_RIGHT
-        });
-        dispatch(setInputBoxEmpty(""));
-      }
-  }
-  useEffect(() => {
-    first
-  
-    return () => {
-      return true
+        position: toast.POSITION.TOP_RIGHT
+      });
+      dispatch(setInputBoxEmpty(""));
     }
-  }, [third])
-  
+  }
+
 
   return (
     <>
@@ -67,7 +60,7 @@ export default function () {
         </li>
       </div>
       <div className="writebox" style={{ display: show ? "block" : "none", backgroundColor: "white" }}>
-        <WriteBox />
+        <WriteBox></WriteBox>
       </div>
       <div className="btns">
         <button className="backBtn" style={{ display: show ? "block" : "none", textAlign: "center" }} onClick={(e) => setShow(false)}> Back </button>

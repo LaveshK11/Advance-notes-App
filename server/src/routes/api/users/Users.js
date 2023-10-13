@@ -1,11 +1,11 @@
 const express = require("express");
-const { userRegister } = require("../../../services/userService");
+const { register } = require("../../../controller/userRegistration");
 const router = express.Router();
 
   router.get("/", (req, res) => {
   res.send("working");
 });
 
-router.post("/register", userRegister);
+router.post("/register", register);
 
 module.exports = router;

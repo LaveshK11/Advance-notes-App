@@ -26,7 +26,7 @@ const userRegister = async (payload) => {
     const validation = validateUserPayload(payload);
 
     if (validation.error) {
-      return validation.error;
+      return false;
     }
 
     const existingUser = await User.findOne({

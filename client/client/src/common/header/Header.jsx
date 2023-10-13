@@ -1,5 +1,6 @@
 import React from "react";
 import "./header.css";
+import { Link } from "react-router-dom";
 export default function () {
   return (
     <div>
@@ -13,16 +14,16 @@ export default function () {
           </div>
           <ul class="menu-items">
             <li>
-              <a href="#">Home</a>
+              <Link to="/">Home</Link>
             </li>
             <li>
-              <a href="#">Add Notes</a>
+              <Link to="/add-notes">Add Notes</Link>
             </li>
             <li>
-              <a href="#">All Notes</a>
+              <Link to="/all-notes">All Notes</Link>
             </li>
             <li>
-              <a href="#">Login/Singup</a>
+              <Link to="/login">Login/Singup</Link>
             </li>
           </ul>
         </div>

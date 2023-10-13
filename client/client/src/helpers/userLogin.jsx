@@ -1,6 +1,6 @@
 import AxiosInstance from '../config/axiosIntance';
 
-const userRegister = async (userData) => {
+const userLogin = async (userData) => {
   try {
 
     const response = await AxiosInstance.post('/user/register', userData);
@@ -17,4 +17,4 @@ const userRegister = async (userData) => {
   }
 };
 
-export { userRegister };
+export { userLogin };
