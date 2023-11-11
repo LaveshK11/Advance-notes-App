@@ -4,8 +4,12 @@ import GLogin from "../../../components/googleLogin/GoogleLogin";
 import { Link } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import { userLogin } from '../../../helpers/userLogin';
+import { useDispatch } from 'react-redux';
+import { storeUserTokens } from '../../../redux/slice/userSlice,';
 
 export default function Login() {
+
+  const dispatch = useDispatch();
 
 
   const [userData, setUserData] = useState({
@@ -24,38 +28,27 @@ export default function Login() {
   }
 
 
-  const handelRegister = async (e) => {
+  const handelLogin = async (e) => {
 
     e.preventDefault();
 
     if (Object.keys(userData)) {
 
-      let dataSaved = await userLogin(userData)
+      let data = await userLogin(userData)
 
-      if (dataSaved?.newUser === false) {
-        return toast.error("User already Registered Please Login", {
+      if (data.status) {
+        toast.success('User Logedin Successfully!', {
+          position: toast.POSITION.TOP_RIGHT
+        });
+
+        dispatch(storeUserTokens(data.tokens))
+
+      }
+      else {
+        toast.error(data.message, {
           position: toast.POSITION.TOP_RIGHT
         });
       }
-      else {
-        if (dataSaved) {
-          console.log(DataView)
-          toast.success('user Registered Successfully!', {
-            position: toast.POSITION.TOP_RIGHT
-          });
-        }
-        else {
-          toast.error("Error While Registering User", {
-            position: toast.POSITION.TOP_RIGHT
-          });
-        }
-      }
-
-    }
-    else {
-      toast.error("Please Fill Complete Details", {
-        position: toast.POSITION.TOP_RIGHT
-      });
     }
   }
 
@@ -68,23 +61,32 @@ export default function Login() {
     const passwordValidation = /[0-9a-zA-Z]*\d[0-9a-zA-Z]*/;
 
 
-    if (!emailValidation.test(userData.email)) {
-      return toast.error("Please enter a valid email", {
-        position: toast.POSITION.TOP_RIGHT
-      });
-    } else if (!passwordValidation.test(userData.password)) {
-      return toast.error("Please enter a valid password", {
-        position: toast.POSITION.TOP_RIGHT
-      });
-    } else {
-      delete userData.confirmPassword;
-    }
+    if (Object.keys(userData)) {
 
+
+      if (!emailValidation.test(userData.email)) {
+        return toast.error("Please enter a valid email", {
+          position: toast.POSITION.TOP_RIGHT
+        });
+      } else if (!passwordValidation.test(userData.password)) {
+        return toast.error("Please enter a valid password", {
+          position: toast.POSITION.TOP_RIGHT
+        });
+      } else {
+        delete userData.confirmPassword;
+      }
+    }
+    else {
+      toast.error("Please Fill Complete Details", {
+        position: toast.POSITION.TOP_RIGHT
+      });
+    }
     setUserData({
       email: "",
       password: "",
     })
-    handelRegister(e);
+
+    handelLogin(e);
   }
 
 
@@ -93,7 +95,7 @@ export default function Login() {
       <div className="container">
         <div className="forms">
           <div className="form login">
-            <span className="title">Login</span>
+            {/* <span className="title">Login</span> */}
             <form action="">
 
               <div className="input-field">
@@ -133,7 +135,7 @@ export default function Login() {
             <div className="login-signup">
               <span className="text">
                 Not a member?
-                <Link to="/singup" className="text signup-link">
+                <Link to="/signup" className="text signup-link">
                   Signup Now
                 </Link>
               </span>

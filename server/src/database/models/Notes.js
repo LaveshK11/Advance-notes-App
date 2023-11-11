@@ -28,5 +28,6 @@ Notes.belongsTo(User, {
   onDelete: "CASCADE",
 });
 
-Notes.sync({ alter: true });
+Notes.sync({ alter: true , Force : true });
+
 module.exports = Notes;

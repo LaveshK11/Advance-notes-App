@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 
+
 const addNotesData = createSlice({
     name: "notes",
     initialState: {

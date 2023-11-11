@@ -6,7 +6,7 @@ import { writeNotes } from '../../redux/slice/noteSlice';
 
 
 function WriteBox() {
-  let editorHtml = useSelector((state) => state.notes.editorHtml); 
+  let editorHtml = useSelector((state) => state.notes.editorHtml);
   const dispatch = useDispatch();
 
   if (!editorHtml) {
@@ -20,7 +20,7 @@ function WriteBox() {
     }
 
   };
-  
+
   return (
     <div className="rich-text-editor" style={{ color: "black" }}>
       <ReactQuill

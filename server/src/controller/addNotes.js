@@ -1,4 +1,4 @@
-const { storeNotes, getNotesById } = require("../services/notesUpload");
+const { storeNotes } = require("../services/notesService/notesUpload");
 const logger = require("../utils/logger/errorLogger");
 
 /**
@@ -10,9 +10,9 @@ const logger = require("../utils/logger/errorLogger");
 
 exports.addNotes = async (req, res, next) => {
   try {
-    let data = await storeNotes(req.body);
-    console
-    return res.json(data);
+    let data = await storeNotes(req.body, req.payload);
+
+    res.json(data);
   } catch (error) {
     next(error);
   }

@@ -1,6 +1,6 @@
-const Notes = require("../database/models/Notes");
-const { ValidationError } = require("../utils/handelErrors/definedError");
-const handleError = require("../utils/handelErrors/handelError");
+const Notes = require("../../database/models/Notes");
+const { ValidationError } = require("../../utils/handelErrors/definedError");
+const handleError = require("../../utils/handelErrors/handelError");
 
 exports.getNotesById = async (payload) => {
   try {
@@ -8,7 +8,7 @@ exports.getNotesById = async (payload) => {
 
     if ((user_id != "" && user_id != undefined)) {
 
-      const response = await Notes.findAll({ where: { user_id: user_id } });
+      const response = await  Notes.findAll({ where: { user_id: user_id } });
 
       return response;
     }

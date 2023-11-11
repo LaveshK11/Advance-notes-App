@@ -1,10 +1,8 @@
 const {
   AppError,
-  APIError,
   BadRequestError,
   ValidationError,
 } = require("./definedError");
-
 
 const handleError = (error) => {
   switch (error.name) {

@@ -1,4 +1,4 @@
-const saveUserData = require("../services/userService").userRegister;
+const { userRegister } = require("../../services/userService/userRegisterService");
 
 /**
  *
@@ -8,9 +8,12 @@ const saveUserData = require("../services/userService").userRegister;
  * @returns Json Data.
  */
 
+
+const userController =  new userRegister()
+
 const register = async (req, res, next) => {
   try {
-    let data = await saveUserData(req.body);
+    let data = await userController.userRegister(req.body);
 
     return res.json(data);
   } catch (error) {

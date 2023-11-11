@@ -1,73 +1,50 @@
-const STATUS_CODES = {
-    OK: 200,
-    BAD_REQUEST: 400,
-    UN_AUTHORISED: 403,
-    NOT_FOUND: 404,
-    INTERNAL_ERROR: 500,
-  };
-  
-  class AppError extends Error {
-    constructor(
-      name,
-      statusCode,
-      description,
-      isOperational,
-      errorStack,
-      logingErrorResponse
-    ) {
-      super(description);
-      Object.setPrototypeOf(this, new.target.prototype);
-      this.name = name;
-      this.statusCode = statusCode;
-      this.isOperational = isOperational;
-      this.errorStack = errorStack;
-      this.logError = logingErrorResponse;
-      // Error.captureStackTrace(this);
-    }
+class AppError extends Error {
+  constructor(
+    name,
+    statusCode,
+    description,
+    isOperational = true,
+    errorStack = false,
+    logingErrorResponse = false
+  ) {
+    super(description);
+    this.name = name;
+    this.statusCode = statusCode;
+    this.isOperational = isOperational;
+    this.errorStack = errorStack;
+    this.logError = logingErrorResponse;
   }
-  
-  //api Specific Errors
-  class APIError extends AppError {
-    constructor(
-      name,
-      statusCode = STATUS_CODES.INTERNAL_ERROR,
-      description = "Internal Server Error",
-      isOperational = true
-    ) {
-      super(name, statusCode, description, isOperational);
-    }
+
+  toJSON() {
+    return {
+      error: this.name,
+      statusCode: this.statusCode,
+      description: this.message,
+    };
   }
-  
-  class BadRequestError extends AppError {
-    constructor(description = "Bad request", logingErrorResponse) {
-      super(
-        "NOT FOUND",
-        STATUS_CODES.BAD_REQUEST,
-        description,
-        true,
-        false,
-        logingErrorResponse
-      );
-    }
+}
+
+class BadRequestError extends AppError {
+  constructor(description = "Bad request", logingErrorResponse = false) {
+    super("BAD REQUEST", 400, description, true, false, logingErrorResponse);
   }
-  
-  class ValidationError extends AppError {
-    constructor(description = "Validation Error", errorStack) {
-      super(
-        "BAD REQUEST",
-        STATUS_CODES.BAD_REQUEST,
-        description,
-        true,
-        errorStack
-      );
-    }
+}
+
+class ValidationError extends AppError {
+  constructor(description = "Validation Error", errorStack = false) {
+    super("BAD REQUEST", 400, description, true, errorStack);
   }
-  
-  module.exports = {
-    AppError,
-    APIError,
-    BadRequestError,
-    ValidationError,
-    STATUS_CODES,
-  };
-  
+}
+
+class AuthorizationError extends AppError {
+  constructor(description = "Unauthorized Error", errorStack = false) {
+    super("UNAUTHORIZED", 401, description, true, errorStack);
+  }
+}
+
+module.exports = {
+  AppError,
+  BadRequestError,
+  ValidationError,
+  AuthorizationError,
+};

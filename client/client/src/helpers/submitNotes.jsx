@@ -1,21 +1,47 @@
+import axios from 'axios';
 import AxiosInstance from '../config/axiosIntance';
 
-const submitNotes = async (payload, user_id) => {
+import { generateTokenFromOld } from './generateAccessToken';
+
+const submitNotes = async (payload, tokens) => {
+
+  const data = {
+    "Content": payload,
+  };
+
   try {
-    const data = {
-      "Content": payload,
-      "user_id": user_id || 1
+
+    let config = {
+      method: 'post',
+      maxBodyLength: Infinity,
+      url: 'http://localhost:8080/api/v1/upload/addNotes',
+      headers: {
+        'Authorization': `Bearer ${tokens.userAccessToken} `,
+        'Content-Type': 'application/json'
+      },
+      data: data
     };
 
-    const response = await AxiosInstance.post('/upload/addNotes', data);
-    if (response.data.statusCode === 400) {
-      return false;
+    const response = await axios.request(config)
+
+    if (response.status === 200) {
+      return true
     } else {
-      return response.data;
+      return false
     }
+
   } catch (error) {
-    console.error(error);
-    throw error;
+    if (error.response.status === 401) {
+
+      let response = await generateTokenFromOld(tokens.refreshToken)
+
+      if (response.status) {
+        return response
+      }
+
+      else return response
+    }
+
   }
 };
 

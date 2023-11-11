@@ -3,15 +3,11 @@ import AxiosInstance from '../config/axiosIntance';
 const userLogin = async (userData) => {
   try {
 
-    const response = await AxiosInstance.post('/user/register', userData);
+    const response = await AxiosInstance.post('/user/login', userData);
 
-    if (response.data.statusCode === 400) {
-      return false;
-    } else {
-      return response.data;
-    }
+    return response.data
+
   } catch (error) {
-    console.log(error)
     console.error(error);
     throw error;
   }

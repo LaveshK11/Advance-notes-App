@@ -30,34 +30,27 @@ export default function Signup() {
   const handelRegister = async (e) => {
     e.preventDefault();
 
-    if (Object.keys(userData)) {
+    let dataSaved = await userRegister(userData)
 
-      let dataSaved = await userRegister(userData)
-
-      if (dataSaved?.newUser === false) {
-        return toast.error("User already Registered Please Login", {
+    if (dataSaved?.newUser === false) {
+      return toast.error("User already Registered Please Login", {
+        position: toast.POSITION.TOP_RIGHT
+      });
+    }
+    else {
+      if (dataSaved) {
+        console.log(DataView)
+        toast.success('user Registered Successfully!', {
           position: toast.POSITION.TOP_RIGHT
         });
       }
       else {
-        if (dataSaved) {
-          console.log(DataView)
-          toast.success('user Registered Successfully!', {
-            position: toast.POSITION.TOP_RIGHT
-          });
-        }
-        else {
-          toast.error("Error While Registering User", {
-            position: toast.POSITION.TOP_RIGHT
-          });
-        }
+        toast.error("Error While Registering User", {
+          position: toast.POSITION.TOP_RIGHT
+        });
       }
     }
-    else {
-      toast.error("Please Fill Complete Details", {
-        position: toast.POSITION.TOP_RIGHT
-      });
-    }
+
   }
 
 
@@ -67,21 +60,28 @@ export default function Signup() {
     const emailValidation = /^[\w\.-]+@[\w\.-]+\.\w+$/;
     const passwordValidation = /[0-9a-zA-Z]*\d[0-9a-zA-Z]*/;
 
+    if (Object.keys(userData)) {
 
-    if (!emailValidation.test(userData.email)) {
-      return toast.error("Please enter a valid email", {
+      if (!emailValidation.test(userData.email)) {
+        return toast.error("Please enter a valid email", {
+          position: toast.POSITION.TOP_RIGHT
+        });
+      } else if (!passwordValidation.test(userData.password)) {
+        return toast.error("Please enter a valid password", {
+          position: toast.POSITION.TOP_RIGHT
+        });
+      } else if (userData.password !== userData.confirmPassword) {
+        return toast.error("Passwords do not match", {
+          position: toast.POSITION.TOP_RIGHT
+        });
+      } else {
+        delete userData.confirmPassword;
+      }
+    }
+    else {
+      toast.error("Please Fill Complete Details", {
         position: toast.POSITION.TOP_RIGHT
       });
-    } else if (!passwordValidation.test(userData.password)) {
-      return toast.error("Please enter a valid password", {
-        position: toast.POSITION.TOP_RIGHT
-      });
-    } else if (userData.password !== userData.confirmPassword) {
-      return toast.error("Passwords do not match", {
-        position: toast.POSITION.TOP_RIGHT
-      });
-    } else {
-      delete userData.confirmPassword;
     }
 
     setUserData({

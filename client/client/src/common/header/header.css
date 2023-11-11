@@ -61,6 +61,12 @@
     color: #117964;
 }
 
+.user-profile-circle img{
+    width: 40px;
+    border-radius: 50px;
+    margin-top: -2px;
+}
+
 @media (max-width: 768px){
     .navbar{
         opacity: 0.95;
