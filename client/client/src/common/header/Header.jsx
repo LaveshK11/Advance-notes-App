@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 export default function () {
 
 
-  const user_token = useSelector((state) => state.user.tokens.userAccessToken)
+  const user_token = useSelector((state) => state.user.tokens.accessToken)
 
   console.log(user_token)
   const [loggedin, setLoggedin] = useState(false)

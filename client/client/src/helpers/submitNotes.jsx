@@ -4,44 +4,46 @@ import AxiosInstance from '../config/axiosIntance';
 import { generateTokenFromOld } from './generateAccessToken';
 
 const submitNotes = async (payload, tokens) => {
-
   const data = {
     "Content": payload,
   };
 
-  try {
 
+  try {
     let config = {
       method: 'post',
       maxBodyLength: Infinity,
       url: 'http://localhost:8080/api/v1/upload/addNotes',
       headers: {
-        'Authorization': `Bearer ${tokens.userAccessToken} `,
+        'Authorization': `Bearer ${tokens.accessToken} `,
         'Content-Type': 'application/json'
       },
       data: data
     };
 
-    const response = await axios.request(config)
+    const response = await axios.request(config);
 
-    if (response.status === 200) {
-      return true
-    } else {
-      return false
-    }
+    return response.status === 200 ? true : false;
 
   } catch (error) {
-    if (error.response.status === 401) {
 
-      let response = await generateTokenFromOld(tokens.refreshToken)
+    if (error.response && error.response.status === 401) {
 
-      if (response.status) {
-        return response
+      try {
+        const newTokens = await generateTokenFromOld(tokens.refreshToken);
+
+        if (newTokens.status) {
+          return submitNotes(payload, newTokens); // Return the result of the recursive call
+        } else {
+          return newTokens.status === 200 ? true : 401
+        }
+      } catch (error) {
+        return false;
       }
-
-      else return response
+    } else {
+3
+      return false;
     }
-
   }
 };
 

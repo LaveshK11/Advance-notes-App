@@ -5,8 +5,8 @@ const usersData = createSlice({
     name: "user",
     initialState: {
         tokens: {
-            userAccessToken: "" || localStorage.getItem('AT'),
-            refreshToken: "" || localStorage.getItem('RT')
+            accessToken: null || localStorage.getItem('AT'),
+            refreshToken: localStorage.getItem('RT') || ""
         }
     },
     reducers: {
@@ -16,7 +16,7 @@ const usersData = createSlice({
 
             localStorage.setItem('RT', (action.payload.refreshToken))
 
-            state.tokens.userAccessToken = action.payload.accessToken
+            state.tokens.accessToken = action.payload.accessToken
 
             state.tokens.refreshToken = action.payload.refreshToken
 
@@ -27,7 +27,7 @@ const usersData = createSlice({
 
             localStorage.removeItem('RT')
 
-            state.tokens.userAccessToken = ""
+            state.tokens.accessToken = ""
 
             state.tokens.refreshToken = ""
 

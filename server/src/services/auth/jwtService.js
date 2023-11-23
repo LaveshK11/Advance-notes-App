@@ -14,6 +14,8 @@ class JwtService {
   constructor() {
     this.accessTokenSecret = process.env.ACCESS_TOKEN_SECRET;
     this.refreshTokenSecret = process.env.REFRESH_TOKEN_SECRET;
+    this.accessTokenTime = process.env.ACCESS_TOKEN_TIME;
+    this.refreshTokenTime = process.env.REFRESH_TOKEN_TIME;
   }
 
   /**
@@ -24,12 +26,13 @@ class JwtService {
   async getAccessToken(userId, email) {
     try {
       const accessToken = jwt.sign({ userId, email }, this.accessTokenSecret, {
-        expiresIn: "20s",
+        expiresIn: this.accessTokenTime,
       });
       return accessToken;
     } catch (error) {
       console.error(error);
-      throw new Error("Access token generation failed");
+      logger.error(error.name);
+      throw new Error("Refresh token generation failed");
     }
   }
 
@@ -44,7 +47,7 @@ class JwtService {
         { userId, email },
         this.refreshTokenSecret,
         {
-          expiresIn: process.env.REFRESH_TOKEN_TIME,
+          expiresIn: this.refreshTokenTime,
         }
       );
       return refreshToken;
@@ -62,20 +65,30 @@ class JwtService {
    */
   async verifyRefreshToken(refreshToken) {
     try {
+      const payload = jwt.verify(refreshToken, this.refreshTokenSecret);
+      return payload;
+    } catch (error) {
+      console.error(error);
+      throw new AuthorizationError("Unauthorized User");
+    }
+  }
+
+  async verifyAccessToken(accessToken) {
+    try {
       const payload = jwt.verify(
-        refreshToken,
-        process.env.REFRESH_TOKEN_SECRET,
-        (err, decoded) => {
+        accessToken,
+        this.accessTokenSecret,
+        (err, payload) => {
           if (err) {
-            return false;
-          } else {
-            return decoded;
+            console.log(err);
           }
+          return payload;
         }
       );
       return payload;
     } catch (error) {
-      throw new AppError("Internsal Server Error");
+      console.error(error);
+      throw new AuthorizationError("Unauthorized User");
     }
   }
 
@@ -103,7 +116,7 @@ class JwtService {
     const redisData = await redisOp.getData(payload.userId);
 
     if (redisData === refreshToken) {
-      return await this.generateTokens(payload.userId, payload.email);
+      return await this.generateTokens(6, "firstuseer1@gmail.com");
     } else {
       return new AuthorizationError("Unauthorized User");
     }

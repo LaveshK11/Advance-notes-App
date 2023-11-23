@@ -39,7 +39,7 @@ export default function () {
         });
         dispatch(setInputBoxEmpty(""));
       }
-      else if (dataSaved?.statusCode === 401) {
+      else if (dataSaved?.statusCode === 401 || dataSaved == 401) {
         dispatch(removeUserTokens())
         toast.error("Please login before submitting Notes", {
           position: toast.POSITION.TOP_RIGHT

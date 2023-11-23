@@ -78,3 +78,27 @@
 {"level":"error","message":"TypeError","timestamp":"2023-10-23T07:04:35.337Z"}
 {"level":"error","message":"ReferenceError","timestamp":"2023-10-31T07:10:46.104Z"}
 {"level":"error","message":"TypeError","timestamp":"2023-10-31T07:45:30.743Z"}
+{"level":"error","message":"Error","timestamp":"2023-11-11T11:11:18.227Z"}
+{"level":"error","message":"Error","timestamp":"2023-11-11T11:11:18.231Z"}
+{"level":"error","message":"Error","timestamp":"2023-11-11T11:11:39.992Z"}
+{"level":"error","message":"Error","timestamp":"2023-11-11T11:11:39.996Z"}
+{"level":"error","message":"BAD REQUEST","timestamp":"2023-11-16T08:49:11.405Z"}
+{"level":"error","message":"BAD REQUEST","timestamp":"2023-11-16T08:51:12.349Z"}
+{"level":"error","message":"BAD REQUEST","timestamp":"2023-11-16T08:51:31.412Z"}
+{"level":"error","message":"BAD REQUEST","timestamp":"2023-11-16T08:51:53.331Z"}
+{"level":"error","message":"BAD REQUEST","timestamp":"2023-11-16T08:52:01.739Z"}
+{"level":"error","message":"BAD REQUEST","timestamp":"2023-11-16T08:52:32.339Z"}
+{"level":"error","message":"Error","timestamp":"2023-11-16T09:03:29.113Z"}
+{"level":"error","message":"Error","timestamp":"2023-11-16T09:03:29.116Z"}
+{"level":"error","message":"TypeError","timestamp":"2023-11-16T09:03:55.688Z"}
+{"level":"error","message":"Error","timestamp":"2023-11-16T09:03:55.691Z"}
+{"level":"error","message":"UNAUTHORIZED","timestamp":"2023-11-16T12:21:46.189Z"}
+{"level":"error","message":"UNAUTHORIZED","timestamp":"2023-11-16T12:22:22.786Z"}
+{"level":"error","message":"UNAUTHORIZED","timestamp":"2023-11-16T12:22:51.372Z"}
+{"level":"error","message":"UNAUTHORIZED","timestamp":"2023-11-16T12:24:10.674Z"}
+{"level":"error","message":"UNAUTHORIZED","timestamp":"2023-11-16T12:25:06.387Z"}
+{"level":"error","message":"UNAUTHORIZED","timestamp":"2023-11-16T12:25:35.329Z"}
+{"level":"error","message":"UNAUTHORIZED","timestamp":"2023-11-16T12:25:51.706Z"}
+{"level":"error","message":"UNAUTHORIZED","timestamp":"2023-11-16T12:26:53.847Z"}
+{"level":"error","message":"UNAUTHORIZED","timestamp":"2023-11-16T12:27:16.519Z"}
+{"level":"error","message":"UNAUTHORIZED","timestamp":"2023-11-23T17:24:22.822Z"}

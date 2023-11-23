@@ -5,6 +5,9 @@ const generateTokenFromOld = async (userToken) => {
 
   try {
 
+    console.log(userToken)
+
+
     let config = {
       method: 'post',
       maxBodyLength: Infinity,
@@ -16,6 +19,7 @@ const generateTokenFromOld = async (userToken) => {
     };
 
     const response = await axios.request(config)
+    
 
     return response.data
 
