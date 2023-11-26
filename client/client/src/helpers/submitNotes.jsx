@@ -41,7 +41,7 @@ const submitNotes = async (payload, tokens) => {
         return false;
       }
     } else {
-3
+      3
       return false;
     }
   }

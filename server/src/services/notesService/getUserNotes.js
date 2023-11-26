@@ -8,7 +8,7 @@ exports.getNotesById = async (payload) => {
 
     if ((user_id != "" && user_id != undefined)) {
 
-      const response = await  Notes.findAll({ where: { user_id: user_id } });
+      const response = await Notes.findAll({ where: { user_id: user_id } });
 
       return response;
     }

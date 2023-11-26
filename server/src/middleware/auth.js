@@ -1,7 +1,4 @@
-const {
-  AuthorizationError,
-  AppError,
-} = require("../utils/handelErrors/definedError");
+const { AuthorizationError, AppError} = require("../utils/handelErrors/definedError");
 const { JwtService } = require("../services/auth/jwtService");
 const logger = require("../utils/logger/errorLogger");
 
@@ -20,9 +17,11 @@ module.exports = {
       if (data) {
         req.payload = data;
         next();
+
       } else next(new AuthorizationError("Unauthorized User"));
+      
     } catch (error) {
-      logger.error(error)
+      logger.error(error);
       next(new AppError(error.name));
     }
   },
