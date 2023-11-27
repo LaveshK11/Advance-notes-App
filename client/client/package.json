@@ -13,6 +13,7 @@
     "@reduxjs/toolkit": "^1.9.5",
     "axios": "^1.5.0",
     "gapi-script": "^1.2.0",
+    "helmet": "^7.1.0",
     "preact": "^10.16.0",
     "preact-render-to-string": "^6.2.1",
     "react-google-login": "^5.2.2",

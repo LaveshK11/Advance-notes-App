@@ -14,7 +14,6 @@ const tokenService = new JwtService();
 
 const refreshToken = async (req, res, next) => {
   try {
-
     const authHeader = req.headers["authorization"];
 
     if (!authHeader) {

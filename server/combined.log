@@ -154,3 +154,39 @@
 {"level":"error","message":"TypeError","timestamp":"2023-11-24T08:52:29.653Z"}
 {"level":"error","message":"TypeError","timestamp":"2023-11-24T08:52:31.153Z"}
 {"level":"error","message":"UNAUTHORIZED","timestamp":"2023-11-24T09:09:35.316Z"}
+{"level":"error","message":"BAD REQUEST","timestamp":"2023-11-27T10:47:35.463Z"}
+{"level":"error","message":"BAD REQUEST","timestamp":"2023-11-27T10:48:45.417Z"}
+{"level":"error","message":"BAD REQUEST","timestamp":"2023-11-27T10:49:34.322Z"}
+{"level":"error","message":"BAD REQUEST","timestamp":"2023-11-27T10:49:49.818Z"}
+{"level":"error","message":"BAD REQUEST","timestamp":"2023-11-27T10:50:20.337Z"}
+{"level":"error","message":"BAD REQUEST","timestamp":"2023-11-27T10:50:43.452Z"}
+{"level":"error","message":"BAD REQUEST","timestamp":"2023-11-27T10:51:07.129Z"}
+{"level":"error","message":"BAD REQUEST","timestamp":"2023-11-27T10:51:39.480Z"}
+{"level":"error","message":"BAD REQUEST","timestamp":"2023-11-27T10:52:41.615Z"}
+{"level":"error","message":"BAD REQUEST","timestamp":"2023-11-27T10:55:10.779Z"}
+{"level":"error","message":"BAD REQUEST","timestamp":"2023-11-27T10:57:26.405Z"}
+{"level":"error","message":"BAD REQUEST","timestamp":"2023-11-27T10:57:35.592Z"}
+{"level":"error","message":"BAD REQUEST","timestamp":"2023-11-27T10:58:21.463Z"}
+{"level":"error","message":"BAD REQUEST","timestamp":"2023-11-27T10:58:44.543Z"}
+{"level":"error","message":"BAD REQUEST","timestamp":"2023-11-27T10:59:08.530Z"}
+{"level":"error","message":"BAD REQUEST","timestamp":"2023-11-27T10:59:27.095Z"}
+{"level":"error","message":"BAD REQUEST","timestamp":"2023-11-27T11:00:53.300Z"}
+{"level":"error","message":"BAD REQUEST","timestamp":"2023-11-27T11:01:45.518Z"}
+{"level":"error","message":"BAD REQUEST","timestamp":"2023-11-27T11:02:23.428Z"}
+{"level":"error","message":"BAD REQUEST","timestamp":"2023-11-27T11:02:36.995Z"}
+{"level":"error","message":"BAD REQUEST","timestamp":"2023-11-27T11:02:44.247Z"}
+{"level":"error","timestamp":"2023-11-27T11:04:42.312Z"}
+{"level":"error","message":"UNAUTHORIZED","timestamp":"2023-11-27T11:06:11.009Z"}
+{"level":"error","message":"UNAUTHORIZED","timestamp":"2023-11-27T11:07:20.479Z"}
+{"level":"error","message":"UNAUTHORIZED","timestamp":"2023-11-27T11:07:50.536Z"}
+{"level":"error","timestamp":"2023-11-27T11:12:48.940Z"}
+{"level":"error","timestamp":"2023-11-27T11:12:48.947Z"}
+{"level":"error","message":"UNAUTHORIZED","timestamp":"2023-11-27T11:16:58.226Z"}
+{"level":"error","timestamp":"2023-11-27T11:17:10.759Z"}
+{"level":"error","timestamp":"2023-11-27T11:17:10.766Z"}
+{"level":"error","message":"UNAUTHORIZED","timestamp":"2023-11-27T11:18:28.260Z"}
+{"level":"error","message":"Invalid argument type","timestamp":"2023-11-27T11:32:16.204Z"}
+{"level":"error","message":"Invalid argument type","timestamp":"2023-11-27T11:32:22.839Z"}
+{"level":"error","message":"Invalid argument type","timestamp":"2023-11-27T11:32:51.087Z"}
+{"level":"error","message":"Invalid argument type","timestamp":"2023-11-27T11:33:39.986Z"}
+{"level":"error","message":"Cannot read properties of undefined (reading 'toString')","timestamp":"2023-11-27T11:35:10.026Z"}

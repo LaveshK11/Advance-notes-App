@@ -5,10 +5,14 @@ const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const { redisConnect } = require("./src/database/redis/redisConnect");
 const routes = require("./src/routes/routes");
+const helmet = require("helmet");
+const morgan = require("morgan");
 
 require("dotenv").config({ path: ".env" });
 
 const app = express();
+app.use(helmet());
+app.use(morgan("dev"));
 
 app.use(express.json());
 app.use(bodyParser.json());

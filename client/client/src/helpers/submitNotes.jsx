@@ -1,4 +1,3 @@
-import axios from 'axios';
 import AxiosInstance from '../config/axiosIntance';
 
 import { generateTokenFromOld } from './generateAccessToken';
@@ -10,40 +9,44 @@ const submitNotes = async (payload, tokens) => {
 
 
   try {
-    let config = {
-      method: 'post',
-      maxBodyLength: Infinity,
-      url: 'http://localhost:8080/api/v1/upload/addNotes',
-      headers: {
-        'Authorization': `Bearer ${tokens.accessToken} `,
-        'Content-Type': 'application/json'
-      },
-      data: data
-    };
+    // let config = {
+    //   method: 'post',
+    //   maxBodyLength: Infinity,
+    //   url: 'http://localhost:8080/api/v1/upload/addNotes',
+    //   headers: {
+    //     'Authorization': `Bearer ${tokens.accessToken} `,
+    //     'Content-Type': 'application/json'
+    //   },
+    //   data: data
+    // };
 
-    const response = await axios.request(config);
+    const response = await AxiosInstance.post('/upload/addNotes', data)
+
+    console.log("response", response);
 
     return response.status === 200 ? true : false;
 
   } catch (error) {
 
-    if (error.response && error.response.status === 401) {
+    console.log(error)
 
-      try {
-        const newTokens = await generateTokenFromOld(tokens.refreshToken);
+    // if (error.response && error.response.status === 401) {
 
-        if (newTokens.status) {
-          return submitNotes(payload, newTokens); // Return the result of the recursive call
-        } else {
-          return newTokens.status === 200 ? true : 401
-        }
-      } catch (error) {
-        return false;
-      }
-    } else {
-      3
-      return false;
-    }
+    //   try {
+    //     const newTokens = await generateTokenFromOld(tokens.refreshToken);
+
+    //     if (newTokens.status) {
+    //       return submitNotes(payload, newTokens); // Return the result of the recursive call
+    //     } else {
+    //       return newTokens.status === 200 ? true : 401
+    //     }
+    //   } catch (error) {
+    //     return false;
+    //   }
+    // } else {
+    //   3
+    //   return false;
+    // }
   }
 };
 

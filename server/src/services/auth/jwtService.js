@@ -6,10 +6,10 @@ const {
   AuthorizationError,
   AppError,
 } = require("../../utils/handelErrors/definedError");
-const redisOp = new redisOperations();
 
 dotenv.config();
 
+const redisOp = new redisOperations();
 class JwtService {
   constructor() {
     this.accessTokenSecret = process.env.ACCESS_TOKEN_SECRET;
@@ -116,7 +116,7 @@ class JwtService {
     const redisData = await redisOp.getData(payload.userId);
 
     if (redisData === refreshToken) {
-      return await this.generateTokens(6, "firstuseer1@gmail.com");
+      return await this.getAccessToken(payload.userId, payload.email);
     } else {
       return new AuthorizationError("Unauthorized User");
     }
