@@ -10,6 +10,7 @@ const logger = require("../utils/logger/errorLogger");
 
 exports.addNotes = async (req, res, next) => {
   try {
+
     let data = await storeNotes(req.body, req.payload);
 
     res.json(data);

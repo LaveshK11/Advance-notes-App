@@ -5,8 +5,6 @@ const generateTokenFromOld = async (userToken) => {
 
   try {
 
-    console.log(userToken)
-
 
     let config = {
       method: 'post',
@@ -19,11 +17,13 @@ const generateTokenFromOld = async (userToken) => {
     };
 
     const response = await axios.request(config)
-    
+
+    console.log(response)
 
     return response.data
 
   } catch (error) {
+    console.log(error)
 
     return false;
   }

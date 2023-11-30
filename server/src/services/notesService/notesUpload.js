@@ -9,8 +9,8 @@ exports.storeNotes = async (body, payload) => {
   try {
     const user_id = payload.userId;
     const content = body.Content;
-
     if (
+      
       user_id != "" &&
       user_id !== undefined &&
       content != "" &&

@@ -15,13 +15,12 @@ export default function () {
 
   const content = useSelector((state) => state.notes.editorHtml)
 
-  const userToken = useSelector((state) => state.user.tokens)
-
-
   const shoWriteBox = async (e) => {
     e.preventDefault();
     setShow(true);
   };
+
+
 
   const submit = async (e) => {
 
@@ -29,27 +28,30 @@ export default function () {
 
     if (content.length) {
 
-      let dataSaved = await submitNotes(content, userToken)
+      if (localStorage.getItem('AT') !== null && localStorage.getItem('RT') !== null) {
 
-      console.log(dataSaved)
+        let dataSaved = await submitNotes(content)
 
-      if (dataSaved === true) {
-        toast.success('Notes Saved Successfully!', {
-          position: toast.POSITION.TOP_RIGHT
-        });
-        dispatch(setInputBoxEmpty(""));
+        if (dataSaved === 401) {
+          toast.error("Error While Saving Notes! Please login again", {
+            position: toast.POSITION.TOP_RIGHT
+          });
+          dispatch(setInputBoxEmpty(""));
+          dispatch(removeUserTokens())
+        }
+        else {
+          toast.success('Notes Saved Successfully!', {
+            position: toast.POSITION.TOP_RIGHT
+          });
+          dispatch(setInputBoxEmpty(""));
+        }
+
       }
-      else if (dataSaved?.statusCode === 401 || dataSaved == 401) {
+      else {
         dispatch(removeUserTokens())
         toast.error("Please login before submitting Notes", {
           position: toast.POSITION.TOP_RIGHT
         });
-      }
-      else {
-        toast.error("Error While Saving Notes!", {
-          position: toast.POSITION.TOP_RIGHT
-        });
-        dispatch(setInputBoxEmpty(""));
       }
 
     }

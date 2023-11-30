@@ -39,8 +39,10 @@ AxiosInstance.interceptors.response.use(
             const oldToken = localStorage.getItem('RT');
 
             if (oldToken) {
-                const tokens = await generateTokenFromOld(localStorage.getItem('RT'))
-                localStorage.setItem('AT', tokens);
+                const tokens = await generateTokenFromOld(oldToken)
+
+                if (tokens)
+                    localStorage.setItem('AT', tokens);
             }
 
             return AxiosInstance(originalRequest);

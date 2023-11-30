@@ -21,6 +21,7 @@ module.exports = {
       } else next(new AuthorizationError("Unauthorized User"));
       
     } catch (error) {
+      console.log(error)
       logger.error(error);
       next(new AppError(error.name));
     }

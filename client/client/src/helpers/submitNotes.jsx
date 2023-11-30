@@ -1,52 +1,26 @@
 import AxiosInstance from '../config/axiosIntance';
 
-import { generateTokenFromOld } from './generateAccessToken';
+const submitNotes = async (payload) => {
 
-const submitNotes = async (payload, tokens) => {
   const data = {
     "Content": payload,
   };
 
-
   try {
-    // let config = {
-    //   method: 'post',
-    //   maxBodyLength: Infinity,
-    //   url: 'http://localhost:8080/api/v1/upload/addNotes',
-    //   headers: {
-    //     'Authorization': `Bearer ${tokens.accessToken} `,
-    //     'Content-Type': 'application/json'
-    //   },
-    //   data: data
-    // };
 
-    const response = await AxiosInstance.post('/upload/addNotes', data)
+    if (payload) {
+      const response = await AxiosInstance.post('/upload/addNotes', { "Content": payload })
 
-    console.log("response", response);
-
-    return response.status === 200 ? true : false;
+      return response.status === 200 ? true : false;
+    }
+    else {
+      return false;
+    }
 
   } catch (error) {
 
-    console.log(error)
+    return error.response.status
 
-    // if (error.response && error.response.status === 401) {
-
-    //   try {
-    //     const newTokens = await generateTokenFromOld(tokens.refreshToken);
-
-    //     if (newTokens.status) {
-    //       return submitNotes(payload, newTokens); // Return the result of the recursive call
-    //     } else {
-    //       return newTokens.status === 200 ? true : 401
-    //     }
-    //   } catch (error) {
-    //     return false;
-    //   }
-    // } else {
-    //   3
-    //   return false;
-    // }
   }
 };
 
